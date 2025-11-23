@@ -1,8 +1,8 @@
 #include <stdio.h>
-//#include "LibConta.h"
+#include "LibConta.h"
 
 int menu(){ //menu mostrar iniciar
-    int opcao;
+    char opcao;
     
     printf("\n--------VOID BANK--------\n");
     printf("1.Depositar\n");
@@ -14,22 +14,31 @@ int menu(){ //menu mostrar iniciar
     printf("7.Extrato\n");
     printf("8.SAIR\n");
     
-    scanf("%d", &opcao);
+    scanf("%c", &opcao);
         
     return opcao;
 }
 
 int main(){
-    int opcao;
+    char opcao;
+    long long valor = 0;
+    int retornos;
     conta_init();
     
     do{
         opcao = menu();
         
         switch(opcao){
-            case 1:
+            case '1': 
+            printf("Digite o valor desejado\n");
+            scanf("%lld" &valor);
+            retornos = depositar(valor);
+            if (retornos == 0) printf("foi\n");
+            else printf("deu ruim\n");
+            extrato_imprimir();
+            break;
             
         }
-    }    
-    
+    }while (1)
+    return 0;
 }
