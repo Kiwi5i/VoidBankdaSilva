@@ -60,44 +60,44 @@ int main(){
                 printf("Digite o valor que deseja depositar\n>> ");
                 valor = ler_centavos();
                 retornos = depositar(valor);
+                limpar_terminal();
                 if (retornos != 0) printf("Valor Inválido! Tente Novamente\n");
                 else{
                     printf("Valor depositado com sucesso!: R$"); imprimir_reais(valor);
                 }
-                limpar_terminal();
                 break;
                 
             case'2':
                 printf("Digite o valor que deseja sacar\n>> ");
                 valor = ler_centavos();
                 retornos = sacar(valor);
+                limpar_terminal();
                 if (retornos != 0) printf("Saldo Insuficiente! Tente Novamente\n");
                 else{
                     printf("Valor sacado com sucesso!: R$"); imprimir_reais(valor);
                 }
-                limpar_terminal();
                 break;
             
             case '3':
                 printf("Digite o valor que deseja aplicar\n>> ");
                 valor = ler_centavos();
                 retornos = aplicar_poupanca(valor);
+                limpar_terminal();
                 if (retornos != 0) printf("Saldo Insuficiente! Tente Novamente\n");
                 else{
                     printf("Valor aplicado na poupança com Sucesso: R$"); imprimir_reais(valor);
                 }
-                limpar_terminal();
                 break;
             
             case '4':
                 printf("Digite o valor que deseja resgatar\n>> ");
                 valor = ler_centavos();
                 retornos = resgatar_poupanca(valor);
+                limpar_terminal();
                 if (retornos != 0) printf("Saldo Insuficiente! Tente Novamente\n");
                 else{
                     printf("Valor resgatado da poupança com sucesso!: R$"); imprimir_reais(valor);
                 }
-                limpar_terminal();
                 break;
             
             /*case '5':
@@ -113,11 +113,11 @@ int main(){
                 break; */
             
             case '5':
+                limpar_terminal();
                 printf("Saldo em conta corrente: R$");
                 imprimir_reais(saldo_corrente());
                 printf("Saldo na poupança: R$");
                 imprimir_reais(saldo_poupanca());
-                limpar_terminal();
                 break;
                 
             case '6':
