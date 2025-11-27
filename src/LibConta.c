@@ -3,6 +3,8 @@
 #include <string.h>
 #include "conta.h"
 
+#pragma execution_character_set("utf-8")
+
 static Conta conta_global; //declara conta
 
 void data_hora_agora(char quando[20]){  //funcao do time.h
@@ -100,7 +102,7 @@ int fazer_pix(const char destino[], long long valor){                           
 }
 
 void render_poupanca(double rendimento_mensal){                             //render poupanca
-    if (conta_global.saldo_poupanca <= 0) return ERRO_SALDO_INSUFICIENTE;
+    if (conta_global.saldo_poupanca >= 0);
 
     long long rendimento_flat = (conta_global.saldo_poupanca * rendimento_mensal);
     conta_global.saldo_poupanca += rendimento_flat;
@@ -110,7 +112,6 @@ void render_poupanca(double rendimento_mensal){                             //re
     conta_global.log[conta_global.nlog].saldo_poupanca_apos = (conta_global.saldo_poupanca);
     data_hora_agora(conta_global.log[conta_global.nlog].quando);
     conta_global.nlog++;
-    return OK;
 }
 
 int  receber_pix(long long valor){                  //pix
@@ -135,24 +136,24 @@ long long saldo_poupanca(void){
 }
 
 void extrato_imprimir(void){
-    printf("\n---> Extrato da sua conta! <---\n");
+    printf("\n> INÍCIO DO EXTRATO <\n\n");
 
     for(int i=0; i < conta_global.nlog; i++){
-        printf("--> Transação %d:\n", i+1);
-        printf("--> Tipo: %d\n", conta_global.log[i].tipo);
+        printf("Transação %d:\n", i+1);
+        printf("> Tipo: %d\n", conta_global.log[i].tipo);
         
-        if (conta_global.log[i].tipo == 0 || conta_global.log[i].tipo == 3 || conta_global.log[i].tipo == 6)
-            printf("--> Valor: R$ "); imprimir_reais(conta_global.log[i].valor);
-            
-        if (conta_global.log[i].tipo == 1 || conta_global.log[i].tipo == 2 || conta_global.log[i].tipo == 4)
-            printf("--> Valor: R$ -"); imprimir_reais(conta_global.log[i].valor);
-            
-        printf("--> Saldo em conta após: R$ "); imprimir_reais(conta_global.log[i].saldo_corrente_apos);
-        printf("--> Saldo em poupança após: R$ "); imprimir_reais(conta_global.log[i].saldo_poupanca_apos);
+        if (conta_global.log[i].tipo == 0 || conta_global.log[i].tipo == 3 || conta_global.log[i].tipo == 6){
+            printf("> Valor: R$ "); imprimir_reais(conta_global.log[i].valor);
+        }
+        if (conta_global.log[i].tipo == 1 || conta_global.log[i].tipo == 2 || conta_global.log[i].tipo == 4){
+            printf("> Valor: R$ -"); imprimir_reais(conta_global.log[i].valor);
+        }
+        printf("> Saldo em conta após: R$ "); imprimir_reais(conta_global.log[i].saldo_corrente_apos);
+        printf("> Saldo em poupança após: R$ "); imprimir_reais(conta_global.log[i].saldo_poupanca_apos);
         
         if (conta_global.log[i].tipo == 4)
-            printf("Destino do Pix: %s\n", conta_global.log[i].destino);
+            printf("> Destino do Pix: %s\n", conta_global.log[i].destino);
             
-        printf("Data e Hora: %s", conta_global.log[i].quando);
+        printf("> Data e Hora: %s\n\n", conta_global.log[i].quando);
     }
 }
