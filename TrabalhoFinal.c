@@ -53,6 +53,10 @@ int main(){
     
     printf("\n--------VOID BANK--------\n");
     do{
+        if(conta_global.nlog >= MAX_TRANS){
+            printf("Limite de transações atingido.\n Encerrando. . .\n\n");
+            break;
+        }
         opcao = menu();
         
         switch(opcao){
