@@ -21,6 +21,8 @@ typedef struct {
     int nlog;
 } Conta;
 
+extern Conta conta_global;
+
 enum {
     OK = 0,
     ERRO_VALOR_INVALIDO = 1,
