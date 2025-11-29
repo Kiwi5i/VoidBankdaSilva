@@ -5,7 +5,7 @@
 
 #pragma execution_character_set("utf-8")
 
-static Conta conta_global; //declara conta
+Conta conta_global;     //declarando a conta
 
 void data_hora_agora(char quando[20]){  //funcao do time.h
     time_t agora = time(NULL);
